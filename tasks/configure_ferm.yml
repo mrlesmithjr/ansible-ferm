@@ -1,0 +1,16 @@
+---
+- name: creating ferm directory
+  file:
+    path: "/etc/ferm"
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: creating ferm configuration directory
+  file:
+    path: "/etc/ferm/ferm.d"
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
