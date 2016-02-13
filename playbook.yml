@@ -1,10 +1,8 @@
 ---
-- name: provisions Gitlab-CE
+- name: configures ferm firewall services
   hosts: all
   become: true
   vars:
-    - config_gitlab: false
   roles:
-    - role: ansible-postfix
-    - role: ansible-gitlab-ce
+    - role: ansible-ferm
   tasks:
