@@ -1,8 +1,33 @@
 ---
 # defaults file for ansible-ferm
+ferm_clear_firewall: false  #defines if all rules should be cleared and reset
 ferm_custom_chains:
   - chain: ALLOWED-LOGGING
   - chain: ALLOWED-NO-LOGGING
+ferm_enable_ip_forwarding: false
+ferm_nat_filters:
+  - chain: INPUT
+    policy: ACCEPT
+    rules: []
+  - chain: OUTPUT
+    policy: ACCEPT
+    rules: []
+  - chain: POSTROUTING
+    policy: ACCEPT
+    rules:
+      - name: masquerade
+        proto: any
+        out_interface: '{{ ansible_default_ipv4.interface }}'
+        jump: MASQUERADE
+        weight: '500'
+  - chain: PREROUTING
+    policy: ACCEPT
+    rules:
+      - name: transparent_squid
+        proto: tcp
+        dport: 80
+        redirect_to: 3128
+        weight: '500'
 ferm_table_filters:
   - chain: ALLOWED-LOGGING
     logging: true
