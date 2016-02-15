@@ -1,0 +1,11 @@
+---
+- name: centos | installing ferm
+  dnf:
+    name: ferm
+    state: present
+
+- name: centos | ensuring ferm is enabled
+  service:
+    name: ferm
+    enabled: yes
+    
