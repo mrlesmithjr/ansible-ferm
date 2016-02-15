@@ -1,4 +1,11 @@
 ---
+- name: centos | installing pre-reqs
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python-dnf
+    
 - name: centos | installing ferm
   dnf:
     name: ferm
@@ -8,4 +15,3 @@
   service:
     name: ferm
     enabled: yes
-    
