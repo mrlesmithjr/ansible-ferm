@@ -6,8 +6,8 @@ Installs Ferm Firewall management and configures rules. (http://ferm.foo-project
 Requirements
 ------------
 
-Define rules for each chain if desired...Custom chains can be added as the example ALLOWED-LOGGING...each rule needs a weight  
-assigned to each rule. The weight defines the filename and dictates the loading order of rules.. weight=000 is highest and loads first  
+Define rules for each chain if desired...Custom chains can be added as the example ALLOWED-LOGGING...each rule needs a weight
+assigned to each rule. The weight defines the filename and dictates the loading order of rules.. weight=000 is highest and loads first
 a weight=999 would be the lowest priority and loads last.
 
 Role Variables
