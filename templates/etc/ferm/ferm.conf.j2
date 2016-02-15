@@ -1,0 +1,26 @@
+table filter {
+{% for item in ferm_table_filters %}
+    chain {{ item.chain }} {
+        policy {{ item.policy }};
+
+{%   if item.connection_tracking is defined %}
+{%     for connection_state in item.connection_tracking %}
+        mod conntrack ctstate {{ connection_state.state }} {{ connection_state.policy }};
+{%     endfor %}
+{%   endif %}
+
+{%   if item.allow_local_connections is defined and item.allow_local_connections %}
+        interface lo ACCEPT;
+{%   endif %}
+    }
+{% endfor %}
+}
+
+{% if ferm_custom_chains is defined %}
+{%   for item in ferm_custom_chains %}
+chain {{ item }};
+{%   endfor %}
+{% endif %}
+
+
+@include '/etc/ferm/ferm.d/';
