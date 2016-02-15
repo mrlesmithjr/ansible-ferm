@@ -115,8 +115,8 @@ galaxy_info:
   #  - saucy
     - trusty
   #  - utopic
-  #  - vivid
-  #  - wily
+    - vivid
+    - wily
   #- name: SLES
   #  versions:
   #  - all
@@ -137,7 +137,7 @@ galaxy_info:
     - jessie
   #  - lenny
   #  - squeeze
-  #  - wheezy
+    - wheezy
 
   galaxy_tags:
     # List tags for your role here, one per line. A tag is
