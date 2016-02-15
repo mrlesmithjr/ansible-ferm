@@ -7,7 +7,7 @@
 # you're doing.
 Vagrant.configure(2) do |config|
   config.vm.define "ferm" do |ferm|
-    ferm.vm.box = "mrlesmithjr/centos-7"
+    ferm.vm.box = "mrlesmithjr/trusty64"
     ferm.vm.hostname = "ferm"
 
     ferm.vm.provider "virtualbox" do |vb|
