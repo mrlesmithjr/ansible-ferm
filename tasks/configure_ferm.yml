@@ -14,3 +14,23 @@
     owner: root
     group: root
     mode: 0700
+
+- name: configuring ferm
+  template:
+    src: "etc/ferm/ferm.conf.j2"
+    dest: "/etc/ferm/ferm.conf"
+    owner: root
+    group: adm
+    mode: 0644
+  notify: reload ferm
+  
+- name: configuring firewall rules
+  template:
+    src: "etc/ferm/ferm.d/rules.conf.j2"
+    dest: "/etc/ferm/ferm.d/{{ item.1.weight }}_{{ item.1.name }}_{{ item.1.proto }}.conf"
+  with_subelements:
+    - ferm_table_filters
+    - rules
+  when: >
+        item.1 is defined and
+        item.1 != 'None'
