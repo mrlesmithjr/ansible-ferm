@@ -1,7 +1,15 @@
 table filter {
+{% if ferm_custom_chains is defined %}
+{%   for item in ferm_custom_chains %}
+chain {{ item.chain }};
+{%   endfor %}
+{% endif %}
+
 {% for item in ferm_table_filters %}
     chain {{ item.chain }} {
+{%   if item.policy is defined %}
         policy {{ item.policy }};
+{%   endif %}
 
 {%   if item.connection_tracking is defined %}
 {%     for connection_state in item.connection_tracking %}
@@ -12,15 +20,15 @@ table filter {
 {%   if item.allow_local_connections is defined and item.allow_local_connections %}
         interface lo ACCEPT;
 {%   endif %}
+
+{%   if item.logging is defined and item.logging %}
+        mod limit limit 2/min LOG log-prefix '{{ item.logging_prefix }}: ';
+{%   endif %}
     }
 {% endfor %}
 }
 
-{% if ferm_custom_chains is defined %}
-{%   for item in ferm_custom_chains %}
-chain {{ item }};
-{%   endfor %}
-{% endif %}
+
 
 
 @include '/etc/ferm/ferm.d/';

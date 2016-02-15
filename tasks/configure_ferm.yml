@@ -23,11 +23,12 @@
     group: adm
     mode: 0644
   notify: reload ferm
-  
+
 - name: configuring firewall rules
   template:
     src: "etc/ferm/ferm.d/rules.conf.j2"
-    dest: "/etc/ferm/ferm.d/{{ item.1.weight }}_{{ item.1.name }}_{{ item.1.proto }}.conf"
+    dest: "/etc/ferm/ferm.d/{{ item.1.weight }}_{{ item.0.chain }}_{{ item.1.name }}_{{ item.1.proto }}.conf"
+  notify: reload ferm
   with_subelements:
     - ferm_table_filters
     - rules
