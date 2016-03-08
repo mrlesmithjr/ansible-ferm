@@ -50,8 +50,8 @@ galaxy_info:
   #  - 11.1
   #  - 11.2
   #  - 11.3
-  #- name: Fedora
-  #  versions:
+  - name: Fedora
+    versions:
   #  - all
   #  - 16
   #  - 17
@@ -59,8 +59,8 @@ galaxy_info:
   #  - 19
   #  - 20
   #  - 21
-  #  - 22
-  #  - 23
+    - 22
+    - 23
   #- name: Windows
   #  versions:
   #  - all
