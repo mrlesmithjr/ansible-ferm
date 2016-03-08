@@ -1,6 +1,5 @@
 ---
 - name: debian | installing ferm
   apt:
-    name: ferm
+    name: "ferm"
     state: present
-    
